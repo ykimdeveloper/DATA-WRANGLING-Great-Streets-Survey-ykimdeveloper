@@ -52,48 +52,70 @@
 
 ## About
 
-> **[?]**
-> Provide general information about your project here.
-> What problem does it (intend to) solve?
-> What is the purpose of your project?
-> Why did you undertake it?
-> You don't have to answer all the questions -- just the ones relevant to your project.
+This is a continuation of the data analysis project using L.A. city's data 'Great Streets Pedestrian Survey 2015'.  
+The data shown in the process of data wrangling and cleaned which is described on my other repo.
+
+This project is to demonstrate how to use prepare and merging multiple data sources into a single dataset for analysis.
+
+Identifying gaps in data such as errors in street names from human input and data validation.
+
 
 <details>
 <summary>Screenshots</summary>
 <br>
 
-> **[?]**
-> Please provide your screenshots here.
 
-|                               Home Page                               |                               Login Page                               |
+
+|                               Zipcode, Birth Year, Col Attributes                              |  Create New Features from Question 1                                |
 | :-------------------------------------------------------------------: | :--------------------------------------------------------------------: |
-| <img src="docs/images/screenshot.png" title="Home Page" width="100%"> | <img src="docs/images/screenshot.png" title="Login Page" width="100%"> |
+| <img src="docs/images/pre-clean.png" title="Home Page" width="100%"> | <img src="docs/images/visit_neighborhood_today.png" title="Login Page" width="100%"> |
+
+|                             Geo Coordinates       
+| :-------------------------------------------------------------------: |
+| <img src="docs/images/geo-data.png" title="Login Page" width="100%"> |
 
 </details>
 
 ### Built With
 
-> **[?]**
-> Please provide the technologies that are used in the project.
+* pandas
+* numpy
+* regular expressions
+* Google Maps API
+*  https://data.lacity.org/Community-Economic-Development/Great-Streets-Pedestrian-Survey-2015/6yv9-t9gq/data
 
 ## Getting Started
 
 ### Prerequisites
+* pip install pandas
+* pip install numpy
+* pip install regex
 
-> **[?]**
-> What are the project requirements/dependencies?
 
 ### Installation
 
-> **[?]**
-> Describe how to install and get started with the project.
+Install the dependencies and setup your google maps API.
 
 ## Usage
 
-> **[?]**
-> How does one go about using it?
-> Provide various use cases and code examples here.
+```python
+    category_no_punct = re.sub(r'[^\w\s]', '', category)
+    question_no_punct = re.sub(r'[^\w\s]', '', row['What brings you to this neighborhood today?'])
+```
+```python
+    data['status'] == 'OK' and  data['results'][0]['geometry']['location_type'] == 'GEOMETRIC_CENTER':
+```
+
+```python
+def similar(a, b):
+    return SequenceMatcher(None, a, b).ratio()
+
+...
+    if similar(category_words, result) == 1.0 or similar(category_words, result) >= 9.0:
+         return True
+```
+
+
 
 ## Roadmap
 
@@ -105,8 +127,7 @@ See the [open issues](https://github.com/ykimdeveloper/data-wrangling-great-stre
 
 ## Support
 
-> **[?]**
-> Provide additional ways to contact the project maintainer/maintainers.
+* ykimdeveloper - message me for any questions
 
 Reach out to the maintainer at one of the following places:
 
@@ -148,9 +169,3 @@ _For more information and to report security issues, please refer to our [securi
 This project is licensed under the **MIT license**.
 
 See [LICENSE](LICENSE) for more information.
-
-## Acknowledgements
-
-> **[?]**
-> If your work was funded by any organization or institution, acknowledge their support here.
-> In addition, if your work relies on other software libraries, or was inspired by looking at other work, it is appropriate to acknowledge this intellectual debt too.
